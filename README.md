@@ -2,7 +2,12 @@
 Creating a "live" infastructure from YAML config
 
 ## Install Generator
-> To install mimic-gen use github release  
+You can download `mimic-gen` from [Github Releases](https://github.com/Ivanhahanov/mimic/releases)
+Download for MacOS on ARM
+```bash
+wget -c https://github.com/Ivanhahanov/mimic/releases/download/0.1.0/mimic_Darwin_arm64.tar.gz -O - | tar -xz
+sudo mv ./mimic-gen /usr/local/bin/mimic-gen
+```
 ## Quick start
 Generate k8s manifests
 ```bash
