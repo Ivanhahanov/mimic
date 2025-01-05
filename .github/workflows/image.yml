@@ -21,4 +21,4 @@ jobs:
       - uses: ko-build/setup-ko@v0.6
         env:
           KO_DOCKER_REPO: explabs/mimic
-      - run: ko build ./cmd/mimic/main.go --platform=linux/amd64,linux/arm64 --bare -t ${{ github.ref_name }}
+      - run: ko build cmd/mimic/main.go --platform=linux/amd64,linux/arm64 --bare -t ${{ github.ref_name }}
