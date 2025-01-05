@@ -1,0 +1,52 @@
+image: explabs/mimic
+namespaces:
+  - name: dev
+    resources:
+      - deployment:
+          name: app
+          ingress:
+          - http:
+              port: 8080
+              endpoints:
+                - url: /dev
+                  resp: "Hello from dev"
+          egress:
+          - http:
+              interval: 10
+              requests:
+                - uri: http://app.test:8080/test
+                  method: POST
+                - uri: http://api:8080/api
+                  method: POST
+      - deployment:
+          name: api
+          ingress:
+          - http:
+              port: 8080
+              endpoints:
+                - url: /api
+                  resp: "api"
+          egress:
+          - http:
+              interval: 10
+              requests:
+                - uri: http://app.test:8080/test
+                  method: POST
+
+  - name: test
+    resources:
+      - deployment:
+          name: app
+          ingress:
+          - http:
+              port: 8080
+              endpoints:
+                - url: /test
+                  resp: "Hello from test"
+          egress:
+          - http:
+              interval: 10
+              requests:
+                - uri: http://app.dev:8080/dev
+                  method: GET
+
